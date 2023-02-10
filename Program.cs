@@ -1,32 +1,47 @@
 ﻿using System;
 
-namespace assignment1
+namespace HasArelationship
 {
     internal class Program
     {
-        static void Main(string[] args)
+        class Address
         {
-            string[] skills = new string[] { "C#", "Java", "SQL" };
-            Instructor instructor = new Instructor("sravya", 4.6f, 4, skills);
-            Console.WriteLine("Is instructor eligible: " + instructor.validateligibility());
-            Console.WriteLine("Does instructor have skill in python: " + instructor.CheckSkill("python"));
-            //if (instructor.validateligibility())
-            //{
-            //    Console.WriteLine("instructor is eligible");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("instructor is not eligible");
-            //}
-            //if (instructor.CheckSkill("java"))
-            //{
-            //    Console.WriteLine("instructor possess the skill");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("instructor doesnot possess the skill");
-            //}
+            public string street, city, state, zipCode;
+            public Address(string street, string city, string state, string zipCode)
+            {
+                this.street = street;
+                this.city = city;
+                this.state = state;
+                this.zipCode = zipCode;
+            }
+
+
         }
-        
+        class Employee
+        {
+            public string name;
+            public int empid;
+            public Address address;
+            public Employee(string name, int empid, Address address)
+            {
+                this.name = name;
+                this.empid = empid;
+                this.address = address;
+
+            }
+
+            public void GetEmpInfo()
+            {
+                Console.WriteLine($"emp id = {empid} \n name = {name} \n "+
+                    $"street = {address.street}\n  city = { address.city}\n state = {address.state} \n"+
+                    $"zipcode = {address.zipCode}");
+            }
+            static void Main(string[] args)
+            {
+                Address address = new Address("vasanth vihar", "padmavathinagar", "andhrapradesh", "535002");
+                Employee employee = new Employee("sravya", 1001, address);
+                employee.GetEmpInfo();
+            }
+        }
     }
 }
